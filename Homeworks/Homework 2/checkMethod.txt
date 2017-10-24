@@ -1,0 +1,32 @@
+static boolean check(int[][] arr, ArrayList<int[][]> arrList)
+	{
+		int [][] tmparr;
+		for(int i = 0 ; i < arrList.size() ; i++)
+		{
+			int counter = 0;
+			tmparr = arrList.get(i);
+			int[] tmparrR;
+			int[] arrR;
+			for (int m = 0; m < 3; m++){
+				arrR = getRow(arr,m);
+				tmparrR = getRow(tmparr,m);
+			
+			if((Arrays.equals(arrR,tmparrR))){
+				counter++;
+			}	
+		}
+			if(counter == 3)
+				return false;
+		
+		}
+		return true;
+	}
+	
+	//get row
+	public static int[] getRow(int[][] array, int index){
+    int[] row = {0,0,0};
+    for(int ii=0; ii<3; ii++){
+       row[ii] = array[index][ii];
+    }
+    return row;
+	}
