@@ -27,32 +27,20 @@ public class Node1 implements Comparable<Node1>
         this.id = id;
 
     }
-
-
-
+    
     public int getId(){
         return id;
     }
     private void deepCopy(int arr[][])
     {
-
-
-
         for(int i = 0; i<3;i++)
         {
             for(int l = 0; l<3;l++)
                 state[i][l] = arr[i][l];
-
-
         }
-
-
-
-
     }
     public void addChild(Node1 cur)
     {
-
         if(child1==null)
             child1= cur;
         else if(child2==null)
@@ -66,16 +54,13 @@ public class Node1 implements Comparable<Node1>
     }
 
     private void findPossibleMovesOfState()
-
     {
-
         if(EmptyX == 0 && EmptyY==0)
         {
             possibleMoves[0] = false;
             possibleMoves[1] = true;
             possibleMoves[2] = true;
             possibleMoves[3] = false;
-
         }
         else if(EmptyX == 0 && EmptyY==1)
         {
@@ -170,15 +155,9 @@ public class Node1 implements Comparable<Node1>
                     this.EmptyX=i;
                     this.EmptyY=l;
                     cond =false;
-
                 }
-
             }
-
         }
-
-
-
         return sum;
     }
 
@@ -204,8 +183,6 @@ public class Node1 implements Comparable<Node1>
             return 2;
         else
             return -1;
-
-
     }
     private int findColumn(int tile)
     {
@@ -229,15 +206,10 @@ public class Node1 implements Comparable<Node1>
             return 1;
         else
             return -1;
-
-
     }
 
     public void print()
-
     {
-
-
         for(int i = 0; i<3;i++)
         {
             for(int l = 0; l<3;l++)
@@ -247,8 +219,6 @@ public class Node1 implements Comparable<Node1>
             System.out.println();
         }
         System.out.println();
-
-
     }
     public int[][] getState() {
         return state;
@@ -323,12 +293,4 @@ public class Node1 implements Comparable<Node1>
         else
             return -1;
     }
-
-
-
-
-
-
-
-
 }

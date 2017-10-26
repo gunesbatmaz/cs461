@@ -1,113 +1,147 @@
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.SingleGraph;
 
-import java.util.*;
+import java.io.File;
+import java.io.FileOutputStream;
+
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeMap;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
 public class PuzzleSolver {
     static int[][] goal = {{1,2,3},{4,5,6},{7,8,0}};
     static int x = 2;
+    static int index = 0;
     static int y = 2;
-    static int tmp;
+    static final int W = 2;
     static int[][] child = new int[3][3];
     static Queue<Node1> queue = new LinkedList<Node1>();
     static int id = 0;
+    static int length = 0;
+    static int closedNodes = 0;
     static Graph graph = new SingleGraph("graph");
-    public static void main(String[] args) {
+    static Scanner read;
+    static int green = 250;
+    static int blue = 10;
+    static ArrayList<int[][]> ss;
+    static ArrayList<Integer> sn;
+    static ArrayList<Integer> sl;
+    
+    public static void main(String[] args) throws IOException {
+        ss = new ArrayList<int[][]>();
+        sl = new ArrayList<Integer>();
+        sn = new ArrayList<Integer>();
+        int[][] startState = new int[3][3];
+        getArray();
+        /*********Excel*********/
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet spreadsheet = workbook.createSheet("w = " + W);
+        XSSFRow row;
+        Map < String, Object[] > info = new TreeMap < String, Object[] >();
+        info.put( "1", new Object[] {"id", "Closed Nodes", "Lenght"});
+        Node1 root;
+        for(int i = 0; i < 10; i++){
+            root = new Node1(ss.get(i),-1,id);
+            root.print();
+            id++;
+            graph.addNode(""+root.getManDistance()+root.getId());
 
-        ArrayList<int[][]> ss = new ArrayList<int[][]>();
-        Random gen = new Random();
-        int num_of_initial_states = 10;
-        int loop_counter = 0;
-
-
-        do
-        {
-            int[][] startState = {{1,2,3},{4,5,6},{7,8,0}};
-            randomize(startState, gen);
-		/* To Check each produced
-		----------------------------------------------------------
-
-				for(int i = 0; i<3;i++)
-			{
-				for(int l = 0; l<3;l++)
-
-					System.out.print((startState)[i][l]);
-
-				System.out.println();
-			}
-			System.out.println();
-		//-----------------------------------------------------------
-		*/
-            if(check(startState, ss))
-                ss.add(startState);
-            loop_counter++;
-        }while(ss.size()< num_of_initial_states);
-
-
-
-        for(int u=0; u<ss.size() ;u++ )
-        {
-
-            for(int i = 0; i<3;i++)
-            {
-                for(int l = 0; l<3;l++)
-
-                    System.out.print((ss.get(u))[i][l]);
-
-                System.out.println();
-            }
-            System.out.println();
+            Node n = graph.getNode(""+root.getManDistance()+root.getId());
+            n.addAttribute("ui.label","root");
+            //graph.display();
+            beamSearch(root, W);
+            sn.add(closedNodes);
+            sl.add(length);
+            System.out.println("closedNodes:" +closedNodes +", length: " + length);
+            info.put( (i+2)+"", new Object[] {i+"", closedNodes+"", length +""});
+            length = 0;
+            closedNodes = 0;
         }
-
-
-
-
-        System.out.print("No of loops:");
-        System.out.println(loop_counter);
-        System.out.print("Initial states produced:");
-        System.out.println(ss.size());
-
-
-        Node1 root = new Node1(ss.get(9),-1,id);
-        root.print();
-        id++;
-        graph.addNode(""+root.getManDistance()+root.getId());
-
-        Node n = graph.getNode(""+root.getManDistance()+root.getId());
-        n.addAttribute("ui.label","root");
-        beamSearch(root, 2);
-        graph.display();
-
+        
+        Set < String > keyid = info.keySet();
+      int rowid = 0;
+      
+      for (String key : keyid) {
+         row = spreadsheet.createRow(rowid++);
+         Object [] objectArr = info.get(key);
+         int cellid = 0;
+         
+         for (Object obj : objectArr){
+            Cell cell = row.createCell(cellid++);
+            cell.setCellValue((String)obj);
+         }
+      }
+      //Write the workbook in file system
+      FileOutputStream out = new FileOutputStream(
+         new File("result.xlsx"));
+      
+      workbook.write(out);
+      out.close();
+        
     }
-    static boolean isGoal()
-    {
+    static void getArray() throws FileNotFoundException{
+        read = new Scanner(new File("states.txt"));
+        int[][] arr;
+        while(read.hasNext()){
+             arr = new int[3][3];
+            for(int i = 0; i < 3; i++){
+                for(int j = 0; j < 3; j++){
+                    arr[i][j] = read.nextInt();
+                }
+            }
+            ss.add(arr);
+        }
+        //System.out.println(ss.size());
+    }
+    
+    
 
+    static boolean isGoal(){
         for(int z = 0; z < 3 ; z++)
             for(int e = 0; e < 3;e++)
                 if(child[z][e]!=goal[z][e])
                     return false;
         return true;
     }
-    static void beamSearch(Node1 root, int w)
-    {
+    static void beamSearch(Node1 root, int w){
+    	int tmpw = w;
         Node1 current;
         queue.add(root);
         x = root.EmptyX;
         y = root.EmptyY;
-        int index = 0;
+        index = 0;
         boolean check2 = true;
         while(index < w)
         {
+            w=tmpw;
             current = queue.poll();
-            System.out.println("Current Node");
-            current.print();
+            //System.out.println("Current Node");
+            //current.print();
             x = current.EmptyX;
             y = current.EmptyY;
-            deepCopy(current.state );
+            deepCopy(current.state);
             if((current.possibleMoves)[0]==true)
             {
-                System.out.println("girdi1");
+                //System.out.println("girdi1");
                 moveUp(child);
                 Node1 sub = new Node1(child,0,id);
                 graph.addNode(""+sub.getManDistance()+sub.getId());
@@ -115,11 +149,12 @@ public class PuzzleSolver {
                 Node n = graph.getNode(""+sub.getManDistance()+sub.getId());
                 n.addAttribute("ui.label",sub.getManDistance());
                 n.setAttribute("ui.style","fill-color: rgb(255,0,0);");
-                sub.print();
+                closedNodes++;                
+                //sub.print();
                 if(isGoal())
                 {
                     n.setAttribute("ui.style","fill-color: rgb(0,0,255);");
-                    System.out.println("Goal state has been found");
+                    //System.out.println("Goal state has been found");
                     return;
                 }
                 current.addChild(sub);
@@ -134,7 +169,7 @@ public class PuzzleSolver {
             }
             if((current.possibleMoves)[1]==true)
             {
-                System.out.println("girdi2");
+                //System.out.println("girdi2");
                 moveDown(child);
                 Node1 sub = new Node1(child,1,id);
                 graph.addNode(""+sub.getManDistance()+sub.getId());
@@ -142,11 +177,12 @@ public class PuzzleSolver {
                 Node n = graph.getNode(""+sub.getManDistance()+sub.getId());
                 n.addAttribute("ui.label",sub.getManDistance());
                 n.setAttribute("ui.style","fill-color: rgb(255,0,0);");
-                sub.print();
+                closedNodes++;
+                //sub.print();
                 if(isGoal())
                 {
                     n.setAttribute("ui.style","fill-color: rgb(0,0,255);");
-                    System.out.println("Goal state has been found");
+                    //System.out.println("Goal state has been found");
                     return;
                 }
                 current.addChild(sub);
@@ -161,7 +197,7 @@ public class PuzzleSolver {
             }
             if((current.possibleMoves)[2]==true)
             {
-                System.out.println("girdi3");
+                //System.out.println("girdi3");
                 moveRight(child);
 
                 Node1 sub = new Node1(child,2,id);
@@ -170,11 +206,13 @@ public class PuzzleSolver {
                 Node n = graph.getNode(""+sub.getManDistance()+sub.getId());
                 n.addAttribute("ui.label",sub.getManDistance());
                 n.setAttribute("ui.style","fill-color: rgb(255,0,0);");
-                sub.print();
+                closedNodes++;
+
+                //sub.print();
                 if(isGoal())
                 {
                     n.setAttribute("ui.style","fill-color: rgb(0,0,255);");
-                    System.out.println("Goal state has been found");
+                    //System.out.println("Goal state has been found");
                     return;
                 }
                 current.addChild(sub);
@@ -190,7 +228,7 @@ public class PuzzleSolver {
             }
             if((current.possibleMoves)[3]==true)
             {
-                System.out.println("girdi4");
+                //System.out.println("girdi4");
                 moveLeft(child);
 
                 Node1 sub = new Node1(child,3,id);
@@ -199,51 +237,46 @@ public class PuzzleSolver {
                 Node n = graph.getNode(""+sub.getManDistance()+sub.getId());
                 n.addAttribute("ui.label",sub.getManDistance());
                 n.setAttribute("ui.style","fill-color: rgb(255,0,0);");
+                closedNodes++;
+
                 if(isGoal())
                 {
                     n.setAttribute("ui.style","fill-color: rgb(0,0,255);");
-                    System.out.println("Goal state has been found");
+                    //System.out.println("Goal state has been found");
                     return;
                 }
-                sub.print();
+                //sub.print();
                 current.addChild(sub);
                 queue.add(sub);id++;
 
-
-
-
             }
-            //for first level of states
-            if(check2)
-            {
+            
+          //for first level of states
+            if(check2){
                 check2=false;
                 eliminate(w);
+                if(queue.size() <3 && w == 3)
+                    index=1;
+                 else
+                 	index=0;
             }
-            else
-            {
+            else{
                 index++;
             }
-
-            if(index == w)
-            {
+            
+            if(index >= w){
                 eliminate(w);
-                index=0;
-
+                if(queue.size() <3 && w==3)
+                    index=1;
+                else	
+                    index=0;
             }
-
-
         }
-
-
-
-
     }
-
-    public static void eliminate(int w)
-    {
-        if(queue.size() <3 && w==3)
-            w=2;
-
+    static void eliminate(int w){
+        length++;
+    	if(queue.size() <3 && w==3)
+             w=2;
         Node1 min1 = queue.peek();
 
         for(Node1 item: queue)
@@ -252,8 +285,6 @@ public class PuzzleSolver {
             {
                 min1= item;
             }
-
-
         }
         queue.remove(min1);
         Node1 min2 = queue.peek();
@@ -263,36 +294,32 @@ public class PuzzleSolver {
             {
                 min2= item;
             }
-
         }
         queue.remove(min2);
         Node1 min3 = queue.peek();
         if(w == 3)
         {
-
-
             for(Node1 item: queue)
             {
                 if(min3.compareTo(item) != -1)
                 {
                     min3= item;
                 }
-
             }
             queue.clear();
             queue.add(min1);
+            queue.add(min2);
+            queue.add(min3);
             Node n = graph.getNode(""+min1.getManDistance()+min1.getId());
             Node n1 = graph.getNode(""+min2.getManDistance()+min2.getId());
             Node n2 = graph.getNode(""+min3.getManDistance()+min3.getId());
             if(n != null)
-                n.setAttribute("ui.style","fill-color: rgb(0,255,0);");
+                n.setAttribute("ui.style","fill-color: rgb("+blue%255+","+ green +","+blue%255+");");
             if(n1 != null)
-                n1.setAttribute("ui.style","fill-color: rgb(0,255,0);");
+                n1.setAttribute("ui.style","fill-color: rgb("+blue%255+","+ green +","+blue%255+");");
             if(n2 != null)
-                n2.setAttribute("ui.style","fill-color: rgb(0,255,0);");
-            queue.add(min2);
-            queue.add(min3);
-
+                n2.setAttribute("ui.style","fill-color: rgb("+blue%255+","+ green +","+blue%255+");");
+            closedNodes -= 3;
         }
         else
         {
@@ -301,18 +328,28 @@ public class PuzzleSolver {
             queue.add(min2);
             Node n = graph.getNode(""+min1.getManDistance()+min1.getId());
             if(n != null)
-                n.setAttribute("ui.style","fill-color: rgb(0,255,0);");
+                n.setAttribute("ui.style","fill-color: rgb("+blue%255+","+ (green) +","+blue%255+");");
             Node n1 = graph.getNode(""+min2.getManDistance()+min2.getId());
             if(n1 != null)
-                n1.setAttribute("ui.style","fill-color: rgb(0,255,0);");
-
+                n1.setAttribute("ui.style","fill-color: rgb("+blue%255+","+ (green) +","+blue%255+");");
+            closedNodes -= 2;
+            
+        }
+        if (green > 100)
+            green = green - 50 ;
+        else
+            green = 250;
+        try        
+        {
+            Thread.sleep(1000);
+        } 
+        catch(InterruptedException ex) 
+        {
+            Thread.currentThread().interrupt();
         }
 
-
     }
-
-    static void deepCopy(int arr2[][])
-    {
+    static void deepCopy(int arr2[][]){
 
         for(int i = 0; i<3;i++)
         {
@@ -324,119 +361,37 @@ public class PuzzleSolver {
 
 
     }
-
-    static void moveUp(int[][] arr)
-    {
-
+    static void moveUp(int[][] arr){
         if(x == 0 || arr[x][y] !=0 || x>2 || y>2)
             return;
-
         else
             swap(x,y,x-1,y,arr);
-
         x=x-1;
-
     }
-    static void moveDown(int[][] arr)
-    {
-
+    static void moveDown(int[][] arr){
         if(x == 2 || arr[x][y] !=0 || x>2 || y>2)
             return;
-
         else
             swap(x,y,x+1,y,arr);
-
         x=x+1;
-
     }
-    static void moveRight(int[][] arr)
-    {
-
+    static void moveRight(int[][] arr){
         if(y == 2 || arr[x][y] !=0 || x>2 || y>2)
             return;
-
         else
             swap(x,y,x,y+1,arr);
-
         y=y+1;
-
     }
-    static void moveLeft(int[][] arr)
-    {
-
+    static void moveLeft(int[][] arr){
         if(y == 0 || arr[x][y] !=0 || x>2 || y>2)
             return;
-
         else
             swap(x,y,x,y-1,arr);
-
         y=y-1;
-
     }
-
-    static void swap(int rowa , int columna, int rowb, int columnb,int[][] arr)
-    {
+    static void swap(int rowa , int columna, int rowb, int columnb,int[][] arr){
         int temp = arr[rowa][columna];
         arr[rowa][columna] = arr[rowb][columnb];
         arr[rowb][columnb] = temp;
-
     }
-
-    static void randomize(int[][] arr, Random r)
-    {
-        for(int i = 0; i<10;i++)
-        {
-            tmp = r.nextInt(4);
-
-            if(tmp==0)
-                moveUp(arr);
-            else if(tmp==1)
-                moveDown(arr);
-            else if(tmp==2)
-                moveRight(arr);
-            else
-                moveLeft(arr);
-
-
-        }
-        x = 2;
-        y = 2;
-    }
-
-    //------------------------------------------------------------------------
-
-    static boolean check(int[][] arr, ArrayList<int[][]> arrList)
-    {
-        int [][] tmparr;
-        for(int i = 0 ; i < arrList.size() ; i++)
-        {
-            int counter = 0;
-            tmparr = arrList.get(i);
-            int[] tmparrR;
-            int[] arrR;
-            for (int m = 0; m < 3; m++){
-                arrR = getRow(arr,m);
-                tmparrR = getRow(tmparr,m);
-
-                if((Arrays.equals(arrR,tmparrR))){
-                    counter++;
-                }
-            }
-            if(counter == 3)
-                return false;
-
-        }
-        return true;
-    }
-
-    //get row
-    public static int[] getRow(int[][] array, int index){
-        int[] row = {0,0,0};
-        for(int ii=0; ii<3; ii++){
-            row[ii] = array[index][ii];
-        }
-        return row;
-    }
-
-
 }
