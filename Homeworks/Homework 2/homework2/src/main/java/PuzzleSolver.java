@@ -52,51 +52,17 @@ public class PuzzleSolver {
         sn = new ArrayList<Integer>();
         int[][] startState = new int[3][3];
         getArray();
-        /*********Excel*********/
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet spreadsheet = workbook.createSheet("w = " + W);
-        XSSFRow row;
-        Map < String, Object[] > info = new TreeMap < String, Object[] >();
-        info.put( "1", new Object[] {"id", "Closed Nodes", "Lenght"});
         Node1 root;
-        for(int i = 0; i < 10; i++){
-            root = new Node1(ss.get(i),-1,id);
-            root.print();
-            id++;
-            graph.addNode(""+root.getManDistance()+root.getId());
+        root = new Node1(ss.get(0),-1,id);
+        root.print();
+        id++;
+        graph.addNode(""+root.getManDistance()+root.getId());
 
-            Node n = graph.getNode(""+root.getManDistance()+root.getId());
-            n.addAttribute("ui.label","root");
-            //graph.display();
-            beamSearch(root, W);
-            sn.add(closedNodes);
-            sl.add(length);
-            System.out.println("closedNodes:" +closedNodes +", length: " + length);
-            info.put( (i+2)+"", new Object[] {i+"", closedNodes+"", length +""});
-            length = 0;
-            closedNodes = 0;
-        }
-        
-        Set < String > keyid = info.keySet();
-      int rowid = 0;
-      
-      for (String key : keyid) {
-         row = spreadsheet.createRow(rowid++);
-         Object [] objectArr = info.get(key);
-         int cellid = 0;
-         
-         for (Object obj : objectArr){
-            Cell cell = row.createCell(cellid++);
-            cell.setCellValue((String)obj);
-         }
-      }
-      //Write the workbook in file system
-      FileOutputStream out = new FileOutputStream(
-         new File("result.xlsx"));
-      
-      workbook.write(out);
-      out.close();
-        
+        Node n = graph.getNode(""+root.getManDistance()+root.getId());
+        n.addAttribute("ui.label","root");
+        graph.display();
+        beamSearch(root, W);  
+        System.out.println("closedNodes:" +closedNodes +", length: " + length);
     }
     static void getArray() throws FileNotFoundException{
         read = new Scanner(new File("states.txt"));
@@ -110,7 +76,6 @@ public class PuzzleSolver {
             }
             ss.add(arr);
         }
-        //System.out.println(ss.size());
     }
     
     
@@ -134,14 +99,14 @@ public class PuzzleSolver {
         {
             w=tmpw;
             current = queue.poll();
-            //System.out.println("Current Node");
-            //current.print();
+            System.out.println("Current Node");
+            current.print();
             x = current.EmptyX;
             y = current.EmptyY;
             deepCopy(current.state);
             if((current.possibleMoves)[0]==true)
             {
-                //System.out.println("girdi1");
+                System.out.println("girdi1");
                 moveUp(child);
                 Node1 sub = new Node1(child,0,id);
                 graph.addNode(""+sub.getManDistance()+sub.getId());
@@ -150,11 +115,11 @@ public class PuzzleSolver {
                 n.addAttribute("ui.label",sub.getManDistance());
                 n.setAttribute("ui.style","fill-color: rgb(255,0,0);");
                 closedNodes++;                
-                //sub.print();
+                sub.print();
                 if(isGoal())
                 {
                     n.setAttribute("ui.style","fill-color: rgb(0,0,255);");
-                    //System.out.println("Goal state has been found");
+                    System.out.println("Goal state has been found");
                     return;
                 }
                 current.addChild(sub);
@@ -169,7 +134,7 @@ public class PuzzleSolver {
             }
             if((current.possibleMoves)[1]==true)
             {
-                //System.out.println("girdi2");
+                System.out.println("girdi2");
                 moveDown(child);
                 Node1 sub = new Node1(child,1,id);
                 graph.addNode(""+sub.getManDistance()+sub.getId());
@@ -178,11 +143,11 @@ public class PuzzleSolver {
                 n.addAttribute("ui.label",sub.getManDistance());
                 n.setAttribute("ui.style","fill-color: rgb(255,0,0);");
                 closedNodes++;
-                //sub.print();
+                sub.print();
                 if(isGoal())
                 {
                     n.setAttribute("ui.style","fill-color: rgb(0,0,255);");
-                    //System.out.println("Goal state has been found");
+                    System.out.println("Goal state has been found");
                     return;
                 }
                 current.addChild(sub);
@@ -197,7 +162,7 @@ public class PuzzleSolver {
             }
             if((current.possibleMoves)[2]==true)
             {
-                //System.out.println("girdi3");
+                System.out.println("girdi3");
                 moveRight(child);
 
                 Node1 sub = new Node1(child,2,id);
@@ -208,11 +173,11 @@ public class PuzzleSolver {
                 n.setAttribute("ui.style","fill-color: rgb(255,0,0);");
                 closedNodes++;
 
-                //sub.print();
+                sub.print();
                 if(isGoal())
                 {
                     n.setAttribute("ui.style","fill-color: rgb(0,0,255);");
-                    //System.out.println("Goal state has been found");
+                    System.out.println("Goal state has been found");
                     return;
                 }
                 current.addChild(sub);
@@ -228,7 +193,7 @@ public class PuzzleSolver {
             }
             if((current.possibleMoves)[3]==true)
             {
-                //System.out.println("girdi4");
+                System.out.println("girdi4");
                 moveLeft(child);
 
                 Node1 sub = new Node1(child,3,id);
@@ -242,10 +207,10 @@ public class PuzzleSolver {
                 if(isGoal())
                 {
                     n.setAttribute("ui.style","fill-color: rgb(0,0,255);");
-                    //System.out.println("Goal state has been found");
+                    System.out.println("Goal state has been found");
                     return;
                 }
-                //sub.print();
+                sub.print();
                 current.addChild(sub);
                 queue.add(sub);id++;
 

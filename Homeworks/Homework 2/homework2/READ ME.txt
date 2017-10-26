@@ -1,0 +1,66 @@
+This project has been created as a Maven Project in NetBeans IDE 8.2.
+The project contains 3 classes:
+	-Node1.java
+	-PuzzleSolver.java
+	-PuzzleGenerator.java
+To test the program with the given states in the report, without running PuzzleGenerator.java, PuzzleSolver.java should run.
+To generate a different set of initial states, the PuzzleGenerator.java can be used. It contains its own main method.
+The current version of the PuzzleSolver.java reads all the created initial states from the .txt file, solves and displays only the first one. In the console, you may see the steps of the solution and, in the end of the solution, the number of closed nodes and length of the solution.
+If you want to see all the solutions, you may change the main method to the following:
+
+		public static void main(String[] args) throws IOException {
+		        ss = new ArrayList<int[][]>();
+		        sl = new ArrayList<Integer>();
+		        sn = new ArrayList<Integer>();
+		        int[][] startState = new int[3][3];
+		        getArray();
+		        /*********Excel*********/
+		        XSSFWorkbook workbook = new XSSFWorkbook();
+		        XSSFSheet spreadsheet = workbook.createSheet("w = " + W);
+		        XSSFRow row;
+		        Map < String, Object[] > info = new TreeMap < String, Object[] >();
+		        info.put( "1", new Object[] {"id", "Closed Nodes", "Lenght"});
+		        Node1 root;
+		        for(int i = 0; i < 10; i++){
+		            root = new Node1(ss.get(i),-1,id);
+		            root.print();
+		            id++;
+		            graph.addNode(""+root.getManDistance()+root.getId());
+
+		            Node n = graph.getNode(""+root.getManDistance()+root.getId());
+		            n.addAttribute("ui.label","root");
+		            //graph.display();
+		            beamSearch(root, W);
+		            sn.add(closedNodes);
+		            sl.add(length);
+		            System.out.println("closedNodes:" +closedNodes +", length: " + length);
+		            info.put( (i+2)+"", new Object[] {i+"", closedNodes+"", length +""});
+		            length = 0;
+		            closedNodes = 0;
+		        }
+		        
+		        Set < String > keyid = info.keySet();
+		      int rowid = 0;
+		      
+		      for (String key : keyid) {
+		         row = spreadsheet.createRow(rowid++);
+		         Object [] objectArr = info.get(key);
+		         int cellid = 0;
+		         
+		         for (Object obj : objectArr){
+		            Cell cell = row.createCell(cellid++);
+		            cell.setCellValue((String)obj);
+		         }
+		      }
+		      //Write the workbook in file system
+		      FileOutputStream out = new FileOutputStream(
+		         new File("result.xlsx"));
+		      
+		      workbook.write(out);
+		      out.close();
+		        
+		    }
+
+
+
+PS: Closing the graphical part for the many solution is strongly adviced.
