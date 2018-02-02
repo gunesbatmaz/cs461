@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="501.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="446.0" prefWidth="696.0" VBox.vgrow="ALWAYS">
+         <children>
+            <GridPane gridLinesVisible="true" layoutX="68.0" layoutY="126.0" prefHeight="260.0" prefWidth="274.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <opaqueInsets>
+                  <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+               </opaqueInsets>
+               <children>
+                  <TextArea fx:id="t00" accessibleText="true" editable="true">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+
+                  <TextArea fx:id="t01" editable="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t02" editable="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t03" editable="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t04" editable="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t10" editable="true" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t11" editable="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t12" editable="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t13" editable="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t14" editable="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t20" editable="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t22" editable="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t23" editable="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t21" editable="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t42" editable="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t24" editable="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t30" editable="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t31" editable="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t32" editable="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t33" editable="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t34" editable="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t40" editable="true" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t41" editable="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t43" editable="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <TextArea fx:id="t44" editable="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin></TextArea>
+                  <Label fx:id="p01" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="76.0" prefWidth="119.0" GridPane.columnIndex="1" />
+                  <Label fx:id="p03" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="82.0" prefWidth="138.0" GridPane.columnIndex="3" />
+                  <Label fx:id="p04" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="88.0" prefWidth="139.0" GridPane.columnIndex="4" />
+                  <Label fx:id="p10" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="114.0" prefWidth="210.0" GridPane.rowIndex="1" />
+                  <Label fx:id="p11" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="85.0" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="p12" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="189.0" prefWidth="418.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label fx:id="p13" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="153.0" prefWidth="206.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Label fx:id="p14" alignment="TOP_LEFT" mouseTransparent="true" prefHeight="82.0" prefWidth="185.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <Label fx:id="p20" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.rowIndex="2" />
+                  <Label fx:id="p21" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="p23" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Label fx:id="p22" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label fx:id="p30" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.rowIndex="3" />
+                  <Label fx:id="p40" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.rowIndex="4" />
+                  <Label fx:id="p42" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label fx:id="p41" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.rowIndex="4" />
+                  <Label fx:id="p34" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                  <Label fx:id="p33" alignment="CENTER" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+                  <Label fx:id="p32" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label fx:id="p31" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="p00" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="60.0" prefWidth="61.0" />
+                  <Label fx:id="p43" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <Label fx:id="p02" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.columnIndex="2" />
+                  <Label fx:id="p24" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  <Label fx:id="p44" alignment="TOP_LEFT" contentDisplay="TOP" mouseTransparent="true" prefHeight="81.0" prefWidth="66.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+               </children>
+            </GridPane>
+            <Label layoutX="397.0" layoutY="95.0" text="Clues">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Button id="pb" fx:id="CheckButton" layoutX="487.0" layoutY="415.0" mnemonicParsing="false" text="Check Puzzle" />
+            <Button id="rb" fx:id="RevealButton" layoutX="599.0" layoutY="415.0" mnemonicParsing="false" text="Reveal Puzzle" />
+            <ListView fx:id="listView" layoutX="397.0" layoutY="126.0" prefHeight="260.0" prefWidth="304.0" />
+            <Label fx:id="date" layoutX="68.0" layoutY="45.0" text="New York Times Mini Puzzle">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button id="pb" fx:id="PrevButton" layoutX="612.0" layoutY="62.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="88.0" text="Back">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>
